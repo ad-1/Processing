@@ -55,6 +55,14 @@ class Body {
     acceleration.add(f);
   }
 
+  boolean collision(Body other) {
+    float distance = dist(position.x, position.y, other.position.x, other.position.y);
+    if (distance <= radius + other.radius + 5) {
+      return true;
+    }
+    return false;
+  }
+
   void show() {
     stroke(255);
     strokeWeight(1);

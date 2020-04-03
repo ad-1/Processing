@@ -12,9 +12,7 @@ float Cd = 0.05; // coefficient of drag
 
 // Forces
 PVector gravity = new PVector(0, g);
-PVector wind = new PVector(10, -20);
-PVector friction;
-PVector drag;
+PVector wind, friction, drag;
 
 void initBodies() {
   for (int i = 0; i < n; i++) {
@@ -34,11 +32,22 @@ void draw() {
   for (Body b : bodies) {
     b.show();
     b.propogate();
+    // collisions(b);
     calcGravity(b);
     calcFriction(b);
     calcDrag(b);
     if (mousePressed) {
+      wind = new PVector(random(-50, 50), -80);
       b.applyForce(wind);
+    }
+  }
+}
+
+void collisions(Body b) {
+  for (Body other : bodies) {
+    if (b != other && b.collision(other)) {
+      b.velocity.mult(-1);
+      other.velocity.mult(-1);
     }
   }
 }
