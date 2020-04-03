@@ -1,5 +1,10 @@
 .DS_Store
+
+# processing default directories and files
 examples/
 tools/
 modes/
 templates/
+libraries/
+
+RandomWalk/
